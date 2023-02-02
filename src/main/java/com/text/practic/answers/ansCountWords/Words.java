@@ -1,4 +1,4 @@
-package com.text.practic.answers.ans_count_words;
+package com.text.practic.answers.ansCountWords;
 
 import java.util.Arrays;
 import java.util.Collection;
