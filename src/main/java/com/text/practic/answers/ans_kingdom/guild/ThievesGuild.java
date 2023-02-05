@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ThievesGuild extends AbstractGuild {
+
+    private int theftCounter;
     public ThievesGuild() {
         renameGuid("Thieves");
         addDefaultPerson();
@@ -23,6 +25,12 @@ public class ThievesGuild extends AbstractGuild {
             throw new RuntimeException(e);
         }
         add(p2);
+    }
+
+
+
+    public int getTheftCounter() {
+        return theftCounter;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.text.practic.answers.ans_kingdom.repo;
+package com.text.practic.answers.ans_kingdom.api;
 
 import com.text.practic.answers.ans_kingdom.entity.Person;
 

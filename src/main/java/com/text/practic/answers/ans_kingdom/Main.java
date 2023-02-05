@@ -2,7 +2,7 @@ package com.text.practic.answers.ans_kingdom;
 
 import com.text.practic.answers.ans_kingdom.entity.Person;
 import com.text.practic.answers.ans_kingdom.guild.ThievesGuild;
-import com.text.practic.answers.ans_kingdom.repo.Guild;
+import com.text.practic.answers.ans_kingdom.api.Guild;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
