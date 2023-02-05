@@ -15,20 +15,21 @@ public class Person {
     private int salary;
     private String guildName;
 
-    public Person(String firstName, String lastName, String middleName, Calendar birthday, PostType postType) {
+    public Person(String firstName, String lastName, String middleName, Calendar birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.birthday = birthday;
-        this.postType = postType;
+        this.postType = PostType.NOT_A_MEMBER;
         this.salary = 2;
     }
 
-    public Person(String firstName, String lastName, Calendar birthday, PostType postType) {
+    public Person(String firstName, String lastName, Calendar birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
-        this.postType = postType;
+        this.postType = PostType.NOT_A_MEMBER;
+        this.salary = 2;
     }
 
     public String getFullName() {

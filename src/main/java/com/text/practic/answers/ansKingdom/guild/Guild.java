@@ -1,48 +1,55 @@
 package com.text.practic.answers.ansKingdom.guild;
 
 import com.text.practic.answers.ansKingdom.entity.Person;
+import com.text.practic.answers.ansKingdom.tipes.PostType;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public abstract class Guild {
     private String title;
     private String guildHeadName;
-    private List<Person> members;
-    private Map<Person, String> dateOfEntry;
+    private final Map<Person, String> members;
 
     protected Guild() {
         this.title = "";
         this.guildHeadName = "";
-        this.members = new ArrayList<>();
-        this.dateOfEntry = new HashMap<>();
+        this.members = new HashMap<>();
     }
 
 
     public void add(Person person) {
-        if (!members.contains(person)) {
-            members.add(person);
-            String i = String.valueOf(new GregorianCalendar().getTime());
-            dateOfEntry.put(person, i);
+        if (!members.containsKey(person)) {
+            person.setPostType(PostType.RECRUIT);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            members.put(person, format.format(new GregorianCalendar().getTime()));
         }
-
     }
 
     public boolean remove(Person person) {
-        if (members.contains(person)) {
+        if (members.containsKey(person)) {
             members.remove(person);
-            dateOfEntry.remove(person);
             return true;
         }
         return false;
     }
 
-    protected static String findHeadName(Map<Person, String> dateOfEntry) {
-        return dateOfEntry.entrySet().stream()
-                .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
-                .skip(dateOfEntry.size() - 1L)
+    protected String findHeadName() {
+        String master = members.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getValue))
                 .map(Map.Entry::getKey)
                 .map(Person::getFullName)
+                .skip(members.size() - 1L)
                 .findFirst().orElseThrow();
+        setNewMaster(master);
+        return master;
+    }
+
+    private void setNewMaster(String master) {
+        members.keySet().stream()
+                .filter(x -> x.getFullName().equals(master))
+                .findFirst().orElseThrow()
+                .setPostType(PostType.MASTER);
     }
 
     public String getTitle() {
@@ -61,20 +68,8 @@ public abstract class Guild {
         this.guildHeadName = guildHeadName;
     }
 
-    public List<Person> getMembers() {
+    public Map<Person, String> getMembers() {
         return members;
-    }
-
-    public void setMembers(List<Person> members) {
-        this.members = members;
-    }
-
-    public Map<Person, String> getDateOfEntry() {
-        return dateOfEntry;
-    }
-
-    public void setDateOfEntry(Map<Person, String> dateOfEntry) {
-        this.dateOfEntry = dateOfEntry;
     }
 
     @Override
@@ -83,7 +78,6 @@ public abstract class Guild {
                 "title='" + title + '\'' +
                 ", guildHeadName='" + guildHeadName + '\'' +
                 ", members=" + members +
-                ", dateOfEntry=" + dateOfEntry +
                 '}';
     }
 }

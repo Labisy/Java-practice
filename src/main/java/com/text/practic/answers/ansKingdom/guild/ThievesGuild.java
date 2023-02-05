@@ -10,7 +10,7 @@ public class ThievesGuild extends Guild {
     public ThievesGuild() {
         setTitle("Thieves");
         addDefaultPerson();
-        setGuildHeadName(findHeadName(getDateOfEntry()));
+        setGuildHeadName(findHeadName());
     }
 
     private void addDefaultPerson() {
