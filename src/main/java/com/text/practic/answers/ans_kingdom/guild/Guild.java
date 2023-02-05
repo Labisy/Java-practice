@@ -1,7 +1,7 @@
-package com.text.practic.answers.ansKingdom.guild;
+package com.text.practic.answers.ans_kingdom.guild;
 
-import com.text.practic.answers.ansKingdom.entity.Person;
-import com.text.practic.answers.ansKingdom.tipes.PostType;
+import com.text.practic.answers.ans_kingdom.entity.Person;
+import com.text.practic.answers.ans_kingdom.tipes.PostType;
 
 import java.text.SimpleDateFormat;
 import java.util.*;

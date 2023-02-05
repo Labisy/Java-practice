@@ -1,6 +1,6 @@
-package com.text.practic.answers.ansKingdom.entity;
+package com.text.practic.answers.ans_kingdom.entity;
 
-import com.text.practic.answers.ansKingdom.tipes.PostType;
+import com.text.practic.answers.ans_kingdom.tipes.PostType;
 
 import java.util.Calendar;
 import java.util.Date;

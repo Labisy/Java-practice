@@ -1,4 +1,4 @@
-package com.text.practic.answers.ansKingdom.tipes;
+package com.text.practic.answers.ans_kingdom.tipes;
 
 public enum PostType {
     NOT_A_MEMBER("Не состоит"),
