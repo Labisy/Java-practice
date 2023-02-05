@@ -1,48 +1,51 @@
 package com.text.practic.answers.ans_kingdom.guild;
 
 import com.text.practic.answers.ans_kingdom.entity.Person;
+import com.text.practic.answers.ans_kingdom.repo.Guild;
 import com.text.practic.answers.ans_kingdom.tipes.PostType;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public abstract class Guild {
+public abstract class AbstractGuild implements Guild {
     private String title;
     private String guildHeadName;
     private final Map<Person, String> members;
 
-    protected Guild() {
+    protected AbstractGuild() {
         this.title = "";
         this.guildHeadName = "";
         this.members = new HashMap<>();
     }
-
-
+    @Override
     public void add(Person person) {
         if (!members.containsKey(person)) {
             person.setPostType(PostType.RECRUIT);
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            person.setGuildName(getTitle());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             members.put(person, format.format(new GregorianCalendar().getTime()));
         }
     }
 
+    @Override
     public boolean remove(Person person) {
         if (members.containsKey(person)) {
             members.remove(person);
+            person.setGuildName(null);
             return true;
         }
         return false;
     }
 
-    protected String findHeadName() {
+    protected void findHeadName() {
         String master = members.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getValue))
+                .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
                 .map(Map.Entry::getKey)
                 .map(Person::getFullName)
                 .skip(members.size() - 1L)
                 .findFirst().orElseThrow();
         setNewMaster(master);
-        return master;
+        setGuildHeadName(master);
     }
 
     private void setNewMaster(String master) {
@@ -51,23 +54,23 @@ public abstract class Guild {
                 .findFirst().orElseThrow()
                 .setPostType(PostType.MASTER);
     }
-
+    @Override
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+     public void renameGuid(String newName) {
+        this.title = newName;
     }
-
-    public String getGuildHeadName() {
+    @Override
+    public String guildHeadName() {
         return guildHeadName;
     }
 
-    public void setGuildHeadName(String guildHeadName) {
+    private void setGuildHeadName(String guildHeadName) {
         this.guildHeadName = guildHeadName;
     }
-
+    @Override
     public Map<Person, String> getMembers() {
         return members;
     }

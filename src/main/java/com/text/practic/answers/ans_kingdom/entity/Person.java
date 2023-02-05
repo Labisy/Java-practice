@@ -2,11 +2,13 @@ package com.text.practic.answers.ans_kingdom.entity;
 
 import com.text.practic.answers.ans_kingdom.tipes.PostType;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 public class Person {
+    public static final String OUTPUT_DATE_FORMAT = "yyyy-MM-dd";
+    public final SimpleDateFormat dateFormat = new SimpleDateFormat(OUTPUT_DATE_FORMAT);
     private String firstName;
     private String lastName;
     private String middleName;
@@ -63,16 +65,16 @@ public class Person {
         this.middleName = middleName;
     }
 
-    public Date getBirthday() {
-        return birthday.getTime();
+    public String getBirthday() {
+        return dateFormat.format(birthday.getTime());
     }
 
     public void setBirthday(Calendar birthday) {
         this.birthday = birthday;
     }
 
-    public PostType getPostType() {
-        return postType;
+    public String getPostType() {
+        return postType.getPost();
     }
 
     public void setPostType(PostType postType) {
@@ -98,10 +100,8 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", birthday=" + birthday.getTime() +
+                "fullName='" + getFullName() + '\'' +
+                ", birthday=" + dateFormat.format(birthday.getTime()) +
                 ", postType=" + postType +
                 ", guildName='" + guildName + '\'' +
                 '}';
