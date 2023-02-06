@@ -1,6 +1,6 @@
 package com.text.practic.answers.ans_kingdom.guild;
 
-import com.text.practic.answers.ans_kingdom.entity.Person;
+import com.text.practic.answers.ans_kingdom.entity.AbstractPerson;
 import com.text.practic.answers.ans_kingdom.api.Guild;
 import com.text.practic.answers.ans_kingdom.tipes.PostType;
 
@@ -10,7 +10,7 @@ import java.util.*;
 public abstract class AbstractGuild implements Guild {
     private String title;
     private String guildHeadName;
-    private final Map<Person, String> members;
+    private final Map<AbstractPerson, String> members;
 
     protected AbstractGuild() {
         this.title = "";
@@ -18,7 +18,7 @@ public abstract class AbstractGuild implements Guild {
         this.members = new HashMap<>();
     }
     @Override
-    public void add(Person person) {
+    public void add(AbstractPerson person) {
         if (!members.containsKey(person)) {
             person.setPostType(PostType.RECRUIT);
             person.setGuildName(getTitle());
@@ -28,7 +28,7 @@ public abstract class AbstractGuild implements Guild {
     }
 
     @Override
-    public boolean remove(Person person) {
+    public boolean remove(AbstractPerson person) {
         if (members.containsKey(person)) {
             members.remove(person);
             person.setGuildName(null);
@@ -37,11 +37,12 @@ public abstract class AbstractGuild implements Guild {
         return false;
     }
 
+
     protected void findHeadName() {
         String master = members.entrySet().stream()
                 .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
                 .map(Map.Entry::getKey)
-                .map(Person::getFullName)
+                .map(AbstractPerson::getFullName)
                 .skip(members.size() - 1L)
                 .findFirst().orElseThrow();
         setNewMaster(master);
@@ -71,7 +72,7 @@ public abstract class AbstractGuild implements Guild {
         this.guildHeadName = guildHeadName;
     }
     @Override
-    public Map<Person, String> getMembers() {
+    public Map<AbstractPerson, String> getMembers() {
         return members;
     }
 

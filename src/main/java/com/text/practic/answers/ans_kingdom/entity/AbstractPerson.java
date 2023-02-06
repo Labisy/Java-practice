@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class Person {
+public abstract class AbstractPerson {
     public static final String OUTPUT_DATE_FORMAT = "yyyy-MM-dd";
     public final SimpleDateFormat dateFormat = new SimpleDateFormat(OUTPUT_DATE_FORMAT);
     private String firstName;
@@ -17,7 +17,7 @@ public class Person {
     private int salary;
     private String guildName;
 
-    public Person(String firstName, String lastName, String middleName, Calendar birthday) {
+    protected AbstractPerson(String firstName, String lastName, String middleName, Calendar birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -26,12 +26,15 @@ public class Person {
         this.salary = 2;
     }
 
-    public Person(String firstName, String lastName, Calendar birthday) {
+    protected AbstractPerson(String firstName, String lastName, Calendar birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.postType = PostType.NOT_A_MEMBER;
         this.salary = 2;
+    }
+
+    protected AbstractPerson(AbstractPerson person) {
     }
 
     public String getFullName() {
@@ -40,7 +43,6 @@ public class Person {
         }
         return String.format("%s %s %s", firstName, lastName, middleName);
     }
-
     public String getFirstName() {
         return firstName;
     }
@@ -65,8 +67,8 @@ public class Person {
         this.middleName = middleName;
     }
 
-    public String getBirthday() {
-        return dateFormat.format(birthday.getTime());
+    public Calendar getBirthday() {
+        return birthday;
     }
 
     public void setBirthday(Calendar birthday) {
@@ -111,7 +113,7 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
+        AbstractPerson person = (AbstractPerson) o;
         return salary == person.salary && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(middleName, person.middleName) && Objects.equals(birthday, person.birthday) && postType == person.postType && Objects.equals(guildName, person.guildName);
     }
 

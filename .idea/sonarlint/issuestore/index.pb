@@ -10,5 +10,9 @@ w
 G.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,e\d\ed67eb178d523a4b3f117dcbe0eda5196367ceec
 e
 5src/main/java/com/text/practic/count_words/Words.java,0\5\05c078832557fe5fb125419d58631ea662e58fd0
-o
-?src/main/java/com/text/practic/answers/ansCountWords/Words.java,d\3\d3c207ce225f426a43999bb09f52d83b42d82d71
+`
+0src/main/java/com/text/practic/kingdom/README.md,7\c\7ccd33d1fc0be68f7b2a83542b8a50e49a3b91b7
+q
+Asrc/main/java/com/text/practic/answers/ans_count_words/Words.java,c\7\c7e96402337ac222a5b47294b009cc08788ef9c8
+v
+Fsrc/main/java/com/text/practic/answers/ans_kingdom/tipes/PostType.java,a\c\ac978d04d55c7ad6922c221a3fa486790b2b3b81

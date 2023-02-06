@@ -1,16 +1,16 @@
 package com.text.practic.answers.ans_kingdom.api;
 
-import com.text.practic.answers.ans_kingdom.entity.Person;
+import com.text.practic.answers.ans_kingdom.entity.AbstractPerson;
 
 import java.util.Map;
 
 public interface Guild {
     void addDefaultPerson();
 
-    void add(Person person);
-    boolean remove(Person person);
+    void add(AbstractPerson person);
+    boolean remove(AbstractPerson person);
     String guildHeadName();
     void renameGuid(String newName);
-    Map<Person, String> getMembers();
+    Map<AbstractPerson, String> getMembers();
     String getTitle();
 }
