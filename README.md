@@ -24,4 +24,4 @@ Tasks will be added.
 
 ## License
 
-Project streamApi is distributed under the Apache License 2.0
+Project java-practice is distributed under the Apache License 2.0
